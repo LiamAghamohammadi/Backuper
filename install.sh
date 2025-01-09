@@ -9,7 +9,7 @@ log() { echo -e "${green}! $1${reset}"; }
 input() { read -p "$(echo -e "${orange}▶ $1${reset}")" "$2"; }
 confirm() { read -p "$(echo -e "\n${pink}Press any key to continue...${reset}")"; }
 
-trap 'echo -e "\n"; error "Script interrupted! Contact: @ErfJabs"; exit 1' SIGINT
+trap 'echo -e "\n"; error "Script interrupted! Contact: @Torrent_Baz"; exit 1' SIGINT
 
 check_needs() {
     log "Checking root..."
@@ -110,7 +110,7 @@ check_needs() {
 menu() {
     while true; do
         print "\n\t Welcome to Backuper!"
-        print "\t\t version 0.2.5 by @ErfJab"
+        print "\t\t version 0.2.5 by @Torrent_Baz"
         print "—————————————————————————————————————————————————————————————————————————"
         print "1) Install"
         print "2) Manage"
@@ -126,7 +126,7 @@ menu() {
                 manage_backups
                 ;;
             0)
-                print "Thank you for using @ErfJabs script. Goodbye!"
+                print "Thank you for using @Torrent_Baz script. Goodbye!"
                 exit 0
                 ;;
             *)
@@ -856,12 +856,12 @@ fi
         send_file_command="curl -s -F \"chat_id=$chat_id\" -F \"document=@\$file_to_send\" -F \"caption=\$caption\" -F \"parse_mode=HTML\" \"https://api.telegram.org/bot$bot_token/sendDocument\""
         send_notification_command="curl -s -X POST \"https://api.telegram.org/bot$bot_token/sendMessage\" -d \"chat_id=$chat_id\" -d \"text=\$message\" -d \"parse_mode=HTML\""
         CAPTION_TEXT="${caption} 
-📦 From <code>\${ip}</code> 
-⚡️ Develop by <b>@ErfJabs</b>"
+💻 From <code>\${ip}</code> 
+⚡️ Develop by <b>@Torrent_Baz</b>"
     elif [ "$send_to_option" == "2" ]; then  # Discord
         send_file_command="curl -v -H 'Content-Type: multipart/form-data' -F \"payload_json={\\\"content\\\":\\\"\$caption\\\"}\" -F \"file=@\$file_to_send\" \"$webhook_url\""
         send_notification_command="curl -s -H 'Content-Type: application/json' -X POST -d '{\"content\": \"\$message\"}' \"$webhook_url\""
-        CAPTION_TEXT="${caption} 📦 from \${ip}\n⚡️ Develop by **[@ErfJabs](<https://t.me/ErfJabs>)**"
+        CAPTION_TEXT="${caption} 💻 from \${ip}\n⚡️ Develop by **[@Torrent_Baz](<https://t.me/ErfJabs>)**"
     fi
 
     cat <<EOL > "$backup_script"
@@ -937,7 +937,7 @@ EOL
         success "Backup script location: $backup_script"
         success "Cron job: Every $minutes minutes"
         success "First backup created and sent."
-        success "Thank you for using @ErfJabs backup script. Enjoy automated backups!"
+        success "Thank you for using @Torrent_Baz backup script. Enjoy automated backups!"
         exit 1
     else
         error "Failed to run backup script. Output:"
