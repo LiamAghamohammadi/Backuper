@@ -793,7 +793,7 @@ backup_generate() {
             local db_address="/root/${name}_${db_name}_backuper.sql"
             local dump_command
             if [ "$service_name" == "marzneshin" ]; then
-                dump_command="if ! mysqldump -h 127.0.0.1 -P ${db_port} -u root -p'${db_password}' --column-statistics=0 '${db_name}' > '${db_address}'; then
+                dump_command="if ! mysqldump -h 127.0.0.2 -P ${db_port} -u root -p'${db_password}' --column-statistics=0 '${db_name}' > '${db_address}'; then
     message=\"Failed to backup Marzneshin database ${db_name}. Please check the server.\"
     $send_notification_command
     exit 1
