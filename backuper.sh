@@ -7,9 +7,9 @@ readonly BACKUP_SUFFIX="${TAG}zip"
 readonly DATABASE_SUFFIX="${TAG}sql"
 readonly LOGS_SUFFIX="${TAG}log"
 readonly VERSION="v0.3.1"
-readonly OWNER="@ErfJabs"
-readonly SPONSORTEXT="سرور رسپینا ترایی 450 پورت 10 دارای اسکریپت تانلینگ رایگان"
-readonly SPONSORLINK="https://t.me/OkaCloud"
+readonly OWNER="@Torrent_Baz"
+readonly SPONSORTEXT=""
+readonly SPONSORLINK=""
 
 
 # ANSI color codes
@@ -134,7 +134,7 @@ menu() {
                 cleanup_backups
                 ;;
             3)
-                print "Thank you for using @ErfJabs script. Goodbye!"
+                print "Thank you for using @Torrent_Baz script. Goodbye!"
                 exit 0
                 ;;
             *)
@@ -532,7 +532,7 @@ marzneshin_template() {
 
     # Generate backup command for non-sqlite databases
     if [[ "$db_type" != "sqlite" ]]; then
-        BACKUP_DB_COMMAND="mysqldump -h 127.0.0.1 --column-statistics=0 -P $DB_PORT -u root -p'$DB_PASSWORD' '$DB_NAME' > $DB_PATH"
+        BACKUP_DB_COMMAND="mysqldump -h 127.0.0.2 --column-statistics=0 -P $DB_PORT -u root -p'$DB_PASSWORD' '$DB_NAME' > $DB_PATH"
         DIRECTORIES+=($DB_PATH)
     fi
 
@@ -822,7 +822,7 @@ telegram_progress() {
     # Set the platform command for sending files
     PLATFORM_COMMAND="curl -s -F \"chat_id=$CHAT_ID\" -F \"document=@\$FILE\" -F \"caption=\$CAPTION\" -F \"parse_mode=HTML\" \"https://api.telegram.org/bot$BOT_TOKEN/sendDocument\""
     CAPTION="
-📦 <b>From </b><code>\${ip}</code> [By <b><a href='https://t.me/erfjabs'>@ErfJabs</a></b>]
+📦 <b>From </b><code>\${ip}</code> [By <b><a href='https://t.me/Torrent_Baz'>@Torrent_Baz</a></b>]
 <b>➖➖➖➖Sponsor➖➖➖➖</b>
 <a href='${SPONSORLINK}'>${SPONSORTEXT}</a>"
     success "Telegram configuration completed successfully."
@@ -861,7 +861,7 @@ discord_progress() {
 
     # Set the platform command for sending files
     PLATFORM_COMMAND="curl -s -F \"file=@\$FILE\" -F \"payload_json={\\\"content\\\": \\\"\$CAPTION\\\"}\" \"$DISCORD_WEBHOOK\""
-    CAPTION="📦 **From** \`${ip}\` [by **[@ErfJabs](https://t.me/erfjabs)**]\n➖➖➖➖**Sponsor**➖➖➖➖\n[${SPONSORTEXT}](${SPONSORLINK})"
+    CAPTION="📦 **From** \`${ip}\` [by **[@Torrent_Baz](https://t.me/Torrent_Baz)**]\n➖➖➖➖**Sponsor**➖➖➖➖\n[${SPONSORTEXT}](${SPONSORLINK})"
     LIMITSIZE=24
     success "Discord configuration completed successfully."
     sleep 1
@@ -935,7 +935,7 @@ set envelope_from=yes
 EOF
 
             chmod 600 ~/.muttrc
-            CAPTION="<html><body><p><b>📦 From </b><code>\${ip}</code> [by <b><a href='https://t.me/erfjabs'>@ErfJabs</a></b>]</p><p><b>➖➖➖➖Sponsor➖➖➖➖</b></p><p><a href='${SPONSORLINK}'>${SPONSORTEXT}</a></p></body></html>"
+            CAPTION="<html><body><p><b>📦 From </b><code>\${ip}</code> [by <b><a href='https://t.me/Torrent_Baz'>@Torrent_Baz</a></b>]</p><p><b>➖➖➖➖Sponsor➖➖➖➖</b></p><p><a href='${SPONSORLINK}'>${SPONSORTEXT}</a></p></body></html>"
             PLATFORM_COMMAND="echo \$CAPTION | mutt -e 'set content_type=text/html' -s 'Backuper' -a \"\$FILE\" -- \"$GMAIL_ADDRESS\""
             LIMITSIZE=24
             break
@@ -1030,7 +1030,7 @@ EOL
         success "Backup script location: $BACKUP_PATH"
         success "Cron job: Every $minutes minutes"
         success "First backup created and sent."
-        success "Thank you for using @ErfJabs backup script. Enjoy automated backups!"
+        success "Thank you for using @Torrent_Baz backup script. Enjoy automated backups!"
         exit 0
     else
         error "Failed to run backup script. Full output:"
